@@ -1,0 +1,45 @@
+# 测试数据文件
+# 用于存储测试用例中使用的测试数据
+
+# 用户测试数据
+users:
+  normal_user:
+    username: test_user_normal
+    email: normal@example.com
+    age: 25
+  
+  admin_user:
+    username: test_admin
+    email: admin@example.com
+    age: 30
+  
+  invalid_email_user:
+    username: test_invalid
+    email: invalid_email  # 无效邮箱格式
+
+# 消息测试数据
+messages:
+  normal_message:
+    receiver_id: 1002
+    content: "这是一条正常的测试消息"
+    title: "测试消息标题"
+  
+  long_content_message:
+    receiver_id: 1003
+    content: "这是一条内容很长的测试消息，用于测试接口对长内容的处理能力。"
+    title: "长内容消息"
+
+# YAML参数化测试数据（用于pytest.mark.parametrize）
+send_message_cases:
+  - receiver_id: 1003
+    content: "验证码1"
+    title: "标题A"
+  
+  - receiver_id: 1004
+    content: "验证码2"
+    title: "标题B"
+  
+  - receiver_id: 1005
+    content: "验证码3"
+    title: "标题C"
+

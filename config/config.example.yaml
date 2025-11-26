@@ -1,0 +1,31 @@
+# 项目配置示例文件
+# 上传到 GitHub 时建议使用本示例文件，而将真实配置保存在本地 config.yaml / .env 中
+
+# API配置
+api:
+  base_url: http://127.0.0.1:5000  # Mock 服务地址（示例）
+  timeout: 30                      # 请求超时时间（秒）
+
+# 日志配置
+log:
+  level: INFO                      # 日志级别: DEBUG, INFO, WARNING, ERROR
+
+# 报告配置
+report:
+  dir: report                      # 报告输出目录
+
+# Mock 服务配置
+mock:
+  host: 127.0.0.1
+  port: 5000
+
+# 邮件配置（敏感信息从环境变量读取）
+# 注意：sender / receiver 请在本地修改为自己的真实邮箱，不要将真实邮箱提交到公开仓库
+email:
+  smtp_server: smtp.example.com    # 邮件服务器地址（示例）
+  smtp_port: 465                   # 邮件服务器端口
+  sender: your_email@example.com   # 发送者邮箱（占位）
+  password: ""                     # 密码从环境变量 EMAIL_HOST_PASSWORD 读取
+  receiver: receiver@example.com   # 接收者邮箱（占位）
+
+
