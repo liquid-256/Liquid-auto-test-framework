@@ -1,4 +1,4 @@
-# Liquid Auto Test Framework
+# Liquid_Auto_Test_Framework
 
 一个基于 **Python + Pytest + Requests** 的接口自动化测试框架，
 支持 **YAML 参数化、API 封装、Mock 服务、Allure 报告、日志与邮件通知**，
@@ -21,7 +21,7 @@
 ## 📁 项目结构
 
 ```text
-MyAutoTestFramework/
+Liquid_Auto_Test_Framework/
 ├── api/                 # 业务 API 封装层
 ├── core/                # 核心框架（请求、配置、日志、断言）
 ├── testcase/            # 测试用例
