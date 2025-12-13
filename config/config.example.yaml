@@ -22,11 +22,11 @@ mock:
 # 邮件配置（敏感信息从环境变量读取）
 # 注意：sender / receiver 请在本地修改为自己的真实邮箱，不要将真实邮箱提交到公开仓库
 email:
-  smtp_server: smtp.example.com    # 邮件服务器地址（示例）
-  smtp_port: 465                   # 邮件服务器端口
-  sender: your_email@example.com   # 发送者邮箱（占位）
-  password: ""                     # 密码从环境变量 EMAIL_HOST_PASSWORD 读取
-  receiver: receiver@example.com   # 接收者邮箱（占位）
+  smtp_server: smtp.qq.com           # SMTP 服务器地址
+  smtp_port: 465                     # SMTP 端口
+  sender: your_email@qq.com         # 发送者邮箱（示例，占位符）
+  password: ""                      # 邮箱授权码，从 EMAIL_HOST_PASSWORD 环境变量读取
+  receiver: receiver@example.com    # 接收报告的邮箱（示例，占位符）
 
 
 

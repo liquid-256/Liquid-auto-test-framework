@@ -53,6 +53,18 @@ Liquid_Auto_Test_Framework/
   `ALLURE_CMD=E:\allure-2.35.1\bin\allure.bat`  
   如果未配置或本机未安装 Allure CLI，则只会生成 HTML 报告 `report/report.html`，不会生成 Allure 报告。
 
+### 配置文件说明
+
+- 仓库已提供示例配置 `config/config.example.yaml`，使用前请复制为本地配置：
+  ```bash
+  cp config/config.example.yaml config/config.yaml
+  ```
+- 复制后在 `config.yaml` 中根据环境修改：
+  - `api.base_url`：Mock 服务地址或真实接口地址
+  - `email.sender` / `email.receiver`：你的发件人与收件人邮箱
+- 邮箱授权码不要写入 `config.yaml`，在 `.env` 中通过 `EMAIL_HOST_PASSWORD` 配置。
+- `config.yaml` 与 `.env` 属于本地私有配置，已在 `.gitignore` 中忽略，不会提交到 GitHub。
+
 ---
 
 ## 🚀 快速开始
