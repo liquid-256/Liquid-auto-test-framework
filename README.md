@@ -144,3 +144,42 @@ EMAIL_HOST_PASSWORD=你的邮箱授权码
 ```
 
 配置文件示例参考：`config/config.yaml`
+
+## Allure 报告查看方式
+
+- 测试执行完成后，Allure 静态报告生成在 `report/allure_report` 目录（通过 `python run.py` 执行会自动生成）。
+
+**方式一（推荐）：使用 Allure CLI**
+
+```bash
+cd E:\Liquid_Auto_Test_Framework\report\allure_report
+allure open .
+```
+
+- 此命令会自动启动本地 HTTP 服务，并在浏览器中打开类似 `http://127.0.0.1:xxxx/index.html` 的地址，可查看 Overview、Suites、Graphs 等可视化信息。
+
+**方式二：使用 Python 自带 HTTP Server（未安装 Allure CLI 时）**
+
+```bash
+cd E:\Liquid_Auto_Test_Framework\report\allure_report
+python -m http.server 8000
+```
+
+- 在浏览器访问 `http://127.0.0.1:8000/index.html` 即可查看同样的 Allure 报告。
+
+**通过邮件附件查看 Allure 报告**
+
+- 框架会自动将 `report/allure_report` 目录打包为 `allure_report.zip` 并通过邮件发送。
+- 收件人查看步骤：
+  - 将附件 `allure_report.zip` 保存并解压，例如解压到 `D:\reports\allure_report`
+  - 在该目录下打开终端并执行：
+    ```bash
+    cd /d D:\reports\allure_report
+    python -m http.server 8000
+    ```
+  - 或（如果已安装 Allure CLI）：
+    ```bash
+    cd /d D:\reports\allure_report
+    allure open .
+    ```
+  - 浏览器访问 `http://127.0.0.1:8000/index.html` 或 CLI 自动打开的地址，即可查看完整报告。
