@@ -2,6 +2,7 @@
 测试框架入口文件
 用于启动测试并生成报告 + 邮件发送
 """
+import os
 import sys
 import argparse
 import subprocess
@@ -75,21 +76,38 @@ def main():
 
     # 生成 Allure 报告（依赖本地已安装 Allure 命令行）
     logger.info("正在生成 Allure 报告...")
-    try:
-        subprocess.run([
-            "allure",
-            "generate",
-            str(allure_results_dir),
-            "-o",
-            str(allure_report_dir),
-            "--clean",
-        ], check=True)
-        logger.info(f"Allure 报告生成成功: {allure_report_dir}/index.html")
-    except FileNotFoundError:
-        logger.warning("未找到 allure 命令，请先安装 Allure 命令行工具")
+
+    # 1) 优先用 shutil.which 在当前进程 PATH 中查找 allure
+    allure_cmd = shutil.which("allure")
+
+    # 2) 如果没找到，尝试读环境变量 ALLURE_CMD（你可以在 .env 里显式配置）
+    if not allure_cmd:
+        allure_cmd = os.getenv("ALLURE_CMD")
+
+    if not allure_cmd:
+        logger.warning("未找到 allure 命令，请先安装 Allure 命令行工具或配置 ALLURE_CMD 环境变量")
         logger.warning("参考文档: https://docs.qameta.io/allure/")
-    except Exception as e:
-        logger.warning(f"Allure 生成失败: {e}")
+    else:
+        logger.info(f"使用 Allure 命令: {allure_cmd}")
+        try:
+            # Windows 上建议 shell=False + 绝对路径
+            subprocess.run(
+                [
+                    allure_cmd,
+                    "generate",
+                    str(allure_results_dir),
+                    "-o",
+                    str(allure_report_dir),
+                    "--clean",
+                ],
+                check=True,
+            )
+            logger.info(f"Allure 报告生成成功: {allure_report_dir}/index.html")
+        except subprocess.CalledProcessError as e:
+            logger.warning(f"Allure 生成失败，退出码 {e.returncode}: {e}")
+        except Exception as e:
+            logger.warning(f"Allure 生成失败: {e}")
+
 
     #  压缩 Allure 报告 ZIP（用于邮件发送）
     try:

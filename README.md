@@ -1,4 +1,4 @@
-# Liquid_Auto_Test_Framework
+ # Liquid_Auto_Test_Framework
 
 一个基于 **Python + Pytest + Requests** 的接口自动化测试框架，
 支持 **YAML 参数化、API 封装、Mock 服务、Allure 报告、日志与邮件通知**，
@@ -43,6 +43,16 @@ Liquid_Auto_Test_Framework/
 - Python ≥ 3.8
 - 已安装 Allure 命令行工具（用于生成 Allure 报告）
 
+## 环境变量配置 (.env)
+
+在项目根目录的 `.env` 文件中需要配置以下变量：
+
+- `EMAIL_HOST_PASSWORD`：邮箱 SMTP 授权码，用于发送测试报告邮件。
+- `ALLURE_CMD`：可选，Allure 命令行工具路径，用于自动生成 Allure 报告。  
+  例如（Windows）：  
+  `ALLURE_CMD=E:\allure-2.35.1\bin\allure.bat`  
+  如果未配置或本机未安装 Allure CLI，则只会生成 HTML 报告 `report/report.html`，不会生成 Allure 报告。
+
 ---
 
 ## 🚀 快速开始
@@ -52,7 +62,8 @@ Liquid_Auto_Test_Framework/
 ```bash
 python -m venv .venv
 # Windows
-.venvScriptsactivate
+.venv\Scripts\activate
+# 如果使用 PowerShell，可以执行 .\.venv\Scripts\activate
 # Linux / macOS
 source .venv/bin/activate
 
@@ -64,6 +75,8 @@ pip install -r requirements.txt
 ```bash
 python mock/mock_server.py
 ```
+
+> 提示：Mock 服务启动后请保持此终端窗口不要关闭，另开一个新的终端执行后续的 `python run.py` 或 `pytest` 命令。
 
 访问健康检查接口验证服务是否正常：
 
